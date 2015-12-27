@@ -1,0 +1,58 @@
+﻿@model Aultcare.Models.ActorMovie
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Character/Actor for Movie</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Actor.ActorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Actor.ActorName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Movie.MovieName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Movie.MovieName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CharacterName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CharacterName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CharacterType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CharacterType)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" />
+            <br />
+            <br />
+            <a href="javascript:void(0);" onclick="history.go(-1);">Return</a>
+        </div>
+    }
+</div>

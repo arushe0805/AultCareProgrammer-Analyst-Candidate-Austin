@@ -1,0 +1,58 @@
+﻿@model Aultcare.Models.Genre
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Html.DisplayFor(model => model.GenreName)</h2>
+
+<h3>Movies</h3>
+
+<div>
+
+    <table class="table">
+
+        <tr>
+
+            <th>Movie Name</th>
+
+            <th>Genre Rating For Movie</th>
+
+            <th></th>
+
+        </tr>
+
+        @foreach (var item in Model.GenreMovies)
+        {
+
+            <tr>
+
+                <td>
+
+                    @Html.DisplayFor(modelItem => item.Movie.MovieName)
+
+                </td>
+
+                <td>
+
+                    @Html.DisplayFor(modelItem => item.GenreRatingForMovie)
+
+                </td>
+
+                <td>
+
+                    @Html.ActionLink("Movie", "../Movie/Details", new { id = item.MovieID })
+
+                </td>
+
+            </tr>
+
+        }
+
+    </table>
+
+</div>
+
+<p>
+    <a href="javascript:void(0);" onclick="history.go(-1);">Return</a>
+</p>

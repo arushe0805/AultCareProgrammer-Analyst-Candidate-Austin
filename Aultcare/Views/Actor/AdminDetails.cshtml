@@ -1,0 +1,77 @@
+﻿@model Aultcare.Models.Actor
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@{
+    ViewBag.Title = @Html.DisplayFor(model => model.ActorName) + " Details";
+}
+
+<h2>@Html.DisplayFor(model => model.ActorName)</h2>
+
+<h3>Movie Character</h3>
+
+@Html.ActionLink("Create New", "Create", "ActorMovie")
+
+<div>
+
+    <table class="table">
+
+        <tr>
+
+            <th>Movie</th>
+
+            <th>Character Name</th>
+
+            <th>Character Type</th>
+
+            <th></th>
+
+        </tr>
+
+        @foreach (var item in Model.ActorMovies)
+        {
+
+            <tr>
+
+                <td>
+
+                    @Html.DisplayFor(modelItem => item.Movie.MovieName)
+
+                </td>
+
+
+                <td>
+
+                    @Html.DisplayFor(modelItem => item.CharacterName)
+
+                </td>
+
+                <td>
+
+                    @Html.DisplayFor(modelItem => item.CharacterType)
+
+                </td>
+
+                <td>
+
+                    @Html.ActionLink("Movie", "../Movie/Details", new { id = item.MovieID })|@Html.ActionLink("Edit", "../ActorMovie/Edit", new { id = item.ActorMovieID })|@Html.ActionLink("Delete", "../ActorMovie/Delete", new { id = item.ActorMovieID })
+
+                </td>
+
+            </tr>
+
+        }
+
+    </table>
+
+</div>
+
+<br />
+
+<p>
+
+    <a href="javascript:void(0);" onclick="history.go(-1);">Return</a>
+
+</p>

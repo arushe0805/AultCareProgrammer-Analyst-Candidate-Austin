@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+
+<html>
+
+    <head>
+
+        <!-- for FF, Chrome, Opera -->
+        <link rel="icon" type="image/ico" href="~/images/icon.ico" />
+        <link rel="icon" type="image/ico" href="~/images/icon.ico" />
+
+        <!-- for IE -->
+        <link rel="icon" type="image/x-icon" href="~/images/icon.ico" />
+
+        <!-- Latest compiled and minified CSS -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title - Austin's AultCare Programmer/Analyst Candidate Project</title>
+       
+        <link href="~/Content/bootstrap.css" rel="stylesheet" />
+        <link href="~/Content/Site.css" rel="stylesheet" />
+        <script type="text/jscript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+        <script type="text/jscript" src="~/Scripts/bootstrap.js"></script>
+        @RenderSection("scripts", required: false)
+
+    </head>
+
+    <body>
+
+        <div class="wraper">
+
+            <div class="navbar navbar-default navbar-fixed-top">
+
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+
+                    <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span>
+
+                    <span class="icon-bar"></span><span class="icon-bar"></span>
+
+                </button>
+
+                <ul class="nav navbar-nav navbar-right collapse navbar-collapse">
+
+
+                    <li class="navbuttons">@Html.ActionLink("Home", "Index", "Home")</li>
+
+                    <li>
+
+                        <a href="#" data-toggle="dropdown">User<span class="caret"></span></a>
+
+                        <ul class="dropdown-menu">
+
+                            <li class="divider"></li>
+
+                            <li>@Html.ActionLink("Movies", "Index", "Movie")</li>
+
+                            <li class="divider"></li>
+
+                            <li>@Html.ActionLink("Actors", "Index", "Actor")</li>
+
+                            <li class="divider"></li>
+
+                            <li>@Html.ActionLink("Genres", "Index", "Genre")</li>
+
+                        </ul>
+
+                    </li>
+
+                    <li>
+
+                        <a href="#" data-toggle="dropdown">Admin<span class="caret"></span></a>
+
+                        <ul class="dropdown-menu">
+
+                            <li class="divider"></li>
+
+                            <li>@Html.ActionLink("Movies", "AdminIndex", "Movie")</li>
+
+                            <li class="divider"></li>
+
+                            <li>@Html.ActionLink("Actors", "AdminIndex", "Actor")</li>
+
+                            <li class="divider"></li>
+
+                            <li>@Html.ActionLink("Genres", "AdminIndex", "Genre")</li>
+
+                        </ul>
+
+                    </li>
+
+                    <li>@Html.ActionLink("Statistics", "GenreStatistics", "Home")</li>
+
+                </ul>
+
+            </div>
+
+            <div class="main">
+
+                <div class="trim">
+
+                    <img alt="" style="width:100%; height: 100%; border-radius: 2px 2px 4px 4px;" src="~/images/Cover.png" />
+
+                </div>
+
+                @RenderBody()
+
+            </div>
+
+            <div class="navbar navbar-inverse navbar-fixed-bottom">
+
+                <p class="text">
+
+                    Austin Programming
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </body>
+
+</html>

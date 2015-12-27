@@ -1,0 +1,117 @@
+﻿@model Aultcare.Models.Movie
+
+@{
+    ViewBag.Title = @Html.DisplayFor(model => model.MovieName) + " Details";
+}
+
+<h2>@Html.DisplayFor(model => model.MovieName)</h2>
+
+<h3>Actors/Characters</h3>
+
+<div>
+
+    <table class="table">
+
+        <tr>
+
+            <th>Characters</th>
+
+            <th>Character Type</th>
+
+            <th>Actor</th>
+
+            <th></th>
+
+        </tr>
+
+        @foreach (var item in Model.ActorMovies)
+        {
+
+            <tr>
+
+                <td>
+
+                    @Html.DisplayFor(modelItem => item.CharacterName)
+
+                </td>
+
+                <td>
+
+                    @Html.DisplayFor(modelItem => item.CharacterType)
+
+                </td>
+
+                <td>
+
+                    @Html.DisplayFor(modelItem => item.Actor.ActorName)
+
+                </td>
+
+                <td>
+
+                    @Html.ActionLink("Actor", "../Actor/Details", new { id = item.ActorID })
+
+                </td>
+
+            </tr>
+
+        }
+
+    </table>
+
+</div>
+
+<br />
+
+<h3>Genre</h3>
+
+<div>
+
+    <table class="table">
+
+        <tr>
+
+            <th>Genres</th>
+
+            <th>Genre Rating For Movie</th>
+
+            <th></th>
+
+        </tr>
+
+        @foreach (var item in Model.GenreMovies)
+        {
+
+            <tr>
+
+                <td>
+
+                    @Html.DisplayFor(modelItem => item.Genre.GenreName)
+
+                </td>
+
+                <td>
+
+                    @Html.DisplayFor(modelItem => item.GenreRatingForMovie) / 5
+
+                </td>
+
+                <td>
+
+                    @Html.ActionLink("Genre", "../Genre/Details", new { id = item.GenreID })
+
+                </td>
+
+            </tr>
+
+        }
+
+    </table>
+
+</div>
+
+<p>
+
+    <a href="javascript:void(0);" onclick="history.go(-1);">Return</a>
+
+</p>

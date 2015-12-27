@@ -1,0 +1,71 @@
+﻿    @model PagedList.IPagedList<Aultcare.Models.Movie>
+    @using PagedList.Mvc;
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+    @{
+        ViewBag.Title = "Movies";
+    }
+
+    <h2>Movies</h2>
+
+    <h3>Number of Movies: @Model.TotalItemCount</h3>
+    <br />
+
+    @using (Html.BeginForm("Index", "Movie", FormMethod.Get))
+    {
+        <p>
+            Find: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+            <input type="submit" value="Search" />
+        </p>
+    }
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.ActionLink("Movie ID", "Index", new { sortOrder = ViewBag.MovieIDSortParm, currentFilter=ViewBag.CurrentFilter })
+            </th>
+            <th>
+                @Html.ActionLink("Movie Name", "Index", new { sortOrder = ViewBag.MovieNameSortParm, currentFilter=ViewBag.CurrentFilter })
+            </th>
+            <th>
+                @Html.ActionLink("Director", "Index", new { sortOrder = ViewBag.DirectorSortParm, currentFilter=ViewBag.CurrentFilter })
+            </th>
+            <th>
+                @Html.ActionLink("Released", "Index", new { sortOrder = ViewBag.ReleasedSortParm, currentFilter=ViewBag.CurrentFilter })
+            </th>
+            <th>
+                @Html.ActionLink("Length (Minutes)", "Index", new { sortOrder = ViewBag.LengthSortParm, currentFilter=ViewBag.CurrentFilter })
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MovieID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MovieName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Director)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Released)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Length)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id=item.MovieID }) 
+            </td>
+        </tr>
+    }
+
+    </table>
+
+    <br />
+
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",  new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

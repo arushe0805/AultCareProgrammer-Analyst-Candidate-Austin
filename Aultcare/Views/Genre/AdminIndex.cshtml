@@ -1,0 +1,94 @@
+﻿@model PagedList.IPagedList<Aultcare.Models.Genre>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Admin Genres";
+}
+
+<style type="text/css">
+
+    th, td 
+    {
+
+        width: 33%;
+
+    }
+
+    .table 
+    {
+
+        width: 66%;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+
+</style>
+
+
+<h2>Admin Genres</h2>
+
+<h3>Number of Genres: @Model.TotalItemCount</h3>
+<br />
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm("AdminIndex", "Genre", FormMethod.Get))
+{
+
+    <p>
+        Find: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+
+}
+
+<table class="table">
+
+    <tr>
+
+        <th>
+            @Html.ActionLink("Genre ID", "AdminIndex", new { sortOrder = ViewBag.GenreIDSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+
+        <th>
+            @Html.ActionLink("Genre Name", "AdminIndex", new { sortOrder = ViewBag.GenreNameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+
+        <th></th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.GenreID)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.GenreName)
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.GenreID }) |
+                @Html.ActionLink("Details", "AdminDetails", new { id = item.GenreID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.GenreID })
+            </td>
+
+        </tr>
+
+    }
+
+</table>
+
+<br />
+
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("AdminIndex", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

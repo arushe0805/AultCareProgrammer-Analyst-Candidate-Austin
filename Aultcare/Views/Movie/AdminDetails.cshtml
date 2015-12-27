@@ -1,0 +1,132 @@
+﻿@model Aultcare.Models.Movie
+
+@{
+    ViewBag.Title = @Html.DisplayFor(model => model.MovieName) + " Details";
+}
+
+<style type="text/css">
+
+    .Third
+    {
+
+        width:33%;
+
+    }
+
+</style>
+
+<h2>@Html.DisplayFor(model => model.MovieName)</h2>
+
+<h3>Actors/Characters</h3>
+
+@Html.ActionLink("Create New", "Create", "ActorMovie")
+
+<div>
+
+    <table class="table">
+
+        <tr>
+
+            <th>Characters</th>
+
+            <th>Character Type</th>
+
+            <th>Actor</th>
+
+            <th></th>
+
+        </tr>
+
+        @foreach (var item in Model.ActorMovies)
+        {
+
+            <tr>
+
+                <td>
+
+                    @Html.DisplayFor(modelItem => item.CharacterName)
+
+                </td>
+
+                <td>
+
+                    @Html.DisplayFor(modelItem => item.CharacterType)
+
+                </td>
+
+                <td>
+
+                    @Html.DisplayFor(modelItem => item.Actor.ActorName)
+
+                </td>
+
+                <td>
+
+                    @Html.ActionLink("Actor", "../Actor/Details", new { id = item.ActorID })|@Html.ActionLink("Edit", "../ActorMovie/Edit", new { id = item.ActorMovieID })|@Html.ActionLink("Delete", "../ActorMovie/Delete", new { id = item.ActorMovieID })
+
+                </td>
+
+            </tr>
+
+        }
+
+    </table>
+
+</div>
+
+<br />
+
+<h3>Genre</h3>
+
+@Html.ActionLink("Create New", "Create", "GenreMovie")
+
+<div>
+
+    <table class="table">
+
+        <tr>
+
+            <th class="Third">Genres</th>
+
+            <th class="Third">Genre Rating For Movie</th>
+
+            <th></th>
+
+        </tr>
+
+        @foreach (var item in Model.GenreMovies)
+        {
+
+            <tr>
+
+                <td class="Third">
+
+                    @Html.DisplayFor(modelItem => item.Genre.GenreName)
+
+                </td>
+
+                <td class="Third">
+
+                    @Html.DisplayFor(modelItem => item.GenreRatingForMovie) / 5
+
+                </td>
+
+                <td class="Third">
+
+                    @Html.ActionLink("Genre", "../Genre/Details", new { id = item.GenreID })|@Html.ActionLink("Edit", "../GenreMovie/Edit", new { id = item.GenreMovieID })|@Html.ActionLink("Delete", "../GenreMovie/Delete", new { id = item.GenreMovieID })
+
+                </td>
+
+            </tr>
+
+        }
+
+    </table>
+
+</div>
+
+<p>
+
+    <a href="javascript:void(0);" onclick="history.go(-1);">Return</a>
+
+</p>
